@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		10B824771D98FE400097A9D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B824761D98FE400097A9D6 /* AppDelegate.swift */; };
-		10B824791D98FE400097A9D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B824781D98FE400097A9D6 /* ViewController.swift */; };
+		10B824791D98FE400097A9D6 /* FaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B824781D98FE400097A9D6 /* FaceViewController.swift */; };
 		10B8247C1D98FE400097A9D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B8247A1D98FE400097A9D6 /* Main.storyboard */; };
 		10B8247E1D98FE400097A9D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10B8247D1D98FE400097A9D6 /* Assets.xcassets */; };
 		10B824811D98FE400097A9D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B8247F1D98FE400097A9D6 /* LaunchScreen.storyboard */; };
+		10B8248C1D9900B40097A9D6 /* FaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8248B1D9900B40097A9D6 /* FaceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		10B824731D98FE400097A9D6 /* FaceIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10B824761D98FE400097A9D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		10B824781D98FE400097A9D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		10B824781D98FE400097A9D6 /* FaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceViewController.swift; sourceTree = "<group>"; };
 		10B8247B1D98FE400097A9D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		10B8247D1D98FE400097A9D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10B824801D98FE400097A9D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10B824821D98FE400097A9D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10B8248B1D9900B40097A9D6 /* FaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FaceView.swift; path = ../FaceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,23 @@
 		10B824751D98FE400097A9D6 /* FaceIt */ = {
 			isa = PBXGroup;
 			children = (
-				10B824761D98FE400097A9D6 /* AppDelegate.swift */,
-				10B824781D98FE400097A9D6 /* ViewController.swift */,
+				10B824781D98FE400097A9D6 /* FaceViewController.swift */,
 				10B8247A1D98FE400097A9D6 /* Main.storyboard */,
+				10B8248B1D9900B40097A9D6 /* FaceView.swift */,
+				10B824881D98FF6E0097A9D6 /* Supporting Files */,
+			);
+			path = FaceIt;
+			sourceTree = "<group>";
+		};
+		10B824881D98FF6E0097A9D6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				10B824761D98FE400097A9D6 /* AppDelegate.swift */,
 				10B8247D1D98FE400097A9D6 /* Assets.xcassets */,
 				10B8247F1D98FE400097A9D6 /* LaunchScreen.storyboard */,
 				10B824821D98FE400097A9D6 /* Info.plist */,
 			);
-			path = FaceIt;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10B824791D98FE400097A9D6 /* ViewController.swift in Sources */,
+				10B824791D98FE400097A9D6 /* FaceViewController.swift in Sources */,
 				10B824771D98FE400097A9D6 /* AppDelegate.swift in Sources */,
+				10B8248C1D9900B40097A9D6 /* FaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
