@@ -16,6 +16,7 @@ class FaceViewController: UIViewController {
         }
     }
     
+   
     @IBOutlet weak var faceView: FaceView! {
         didSet {
             faceView.addGestureRecognizer(UIPinchGestureRecognizer(target: faceView, action: #selector(FaceView.changeScale(_:))))
@@ -26,6 +27,8 @@ class FaceViewController: UIViewController {
             let sadderSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(FaceViewController.decreaseHappiness))
             sadderSwipeGestureRecognizer.direction = .Down
             faceView.addGestureRecognizer(sadderSwipeGestureRecognizer)
+            
+            faceView.addGestureRecognizer(UIRotationGestureRecognizer(target: self, action: #selector(FaceViewController.changeBrows(_:))))
 
             updateUI()
         }
@@ -40,6 +43,21 @@ class FaceViewController: UIViewController {
             case .Squinting: break
             }
         }
+    }
+    
+    func changeBrows(recognizer: UIRotationGestureRecognizer) {
+        switch recognizer.state {
+        case .Changed, .Ended:
+            if recognizer.rotation > CGFloat(M_PI/4) {
+                expression.eyeBrows = expression.eyeBrows.moreRelaxedBrow()
+                recognizer.rotation = 0.0
+            } else if recognizer.rotation < -CGFloat(M_PI/4) {
+                expression.eyeBrows = expression.eyeBrows.moreFurrowedBrow()
+                recognizer.rotation = 0.0
+            }
+        default: break
+        }
+        
     }
     
     func increaseHappiness() {
@@ -65,14 +83,19 @@ class FaceViewController: UIViewController {
     ]
     
     private func updateUI() {
-        switch expression.eyes {
-        case .Open: faceView.eyesOpen = true
-        case .Closed: faceView.eyesOpen = false
-        case .Squinting: faceView.eyesOpen = false
+        if faceView != nil {
+            switch expression.eyes {
+            case .Open: faceView.eyesOpen = true
+            case .Closed: faceView.eyesOpen = false
+            case .Squinting: faceView.eyesOpen = false
+            }
+            faceView.mouthCurvature = mouthCurvatures[expression.mouth] ?? 0.0
+            faceView.eyeBrowTilt = eyeBrowTilts[expression.eyeBrows] ?? 0.0
         }
-        faceView.mouthCurvature = mouthCurvatures[expression.mouth] ?? 0.0
-        faceView.eyeBrowTilt = eyeBrowTilts[expression.eyeBrows] ?? 0.0
     }
+    
+   let instance = getFaceMVCinstanceCount()
+
     
 }
 
