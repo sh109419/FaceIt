@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 private var faceMVCinstanceCount = 0
 func getFaceMVCinstanceCount() -> Int { faceMVCinstanceCount += 1; return faceMVCinstanceCount }
 private var emotionsMVCinstanceCount = 0
@@ -21,11 +21,11 @@ func bumpLogDepth() {
         logPrefix += "__"
         lastLog = NSDate()
     }
-}
+}*/
 
 // we haven't covered extensions as yet
 // but it's basically a way to add methods to a given class
-
+/*
 extension FaceViewController
 {
     func logVCL(msg: String) {
@@ -128,4 +128,4 @@ extension EmotionsViewController
                 self.logVCL("doneAnimatingAlongsideTransition")
         })
     }
-}
+}*/

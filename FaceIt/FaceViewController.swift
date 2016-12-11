@@ -16,7 +16,10 @@ class FaceViewController: UIViewController {
         }
     }
     
-   
+    deinit {
+        print("***************deinit")
+    }
+    
     @IBOutlet weak var faceView: FaceView! {
         didSet {
             faceView.addGestureRecognizer(UIPinchGestureRecognizer(target: faceView, action: #selector(FaceView.changeScale(_:))))
@@ -43,6 +46,53 @@ class FaceViewController: UIViewController {
             case .Squinting: break
             }
         }
+    }
+    
+    private struct Animation {
+        static let ShakeAngle = CGFloat(M_PI / 3)
+        static let ShakeDuration = 0.5
+    }
+    
+    @IBAction func headShake(sender: UITapGestureRecognizer) {
+    UIView.animateWithDuration(
+        Animation.ShakeDuration,
+        animations: {
+            self.faceView.transform = CGAffineTransformRotate(self.faceView.transform, Animation.ShakeAngle)
+        },
+        completion: {
+            finished in
+            if finished {
+                UIView.animateWithDuration(
+                    Animation.ShakeDuration,
+                    animations: {
+                        self.faceView.transform = CGAffineTransformRotate(self.faceView.transform, -Animation.ShakeAngle*2)
+                    },
+                    completion: {
+                        finished in
+                        if finished {
+                            UIView.animateWithDuration(
+                                Animation.ShakeDuration,
+                                animations: {
+                                    self.faceView.transform = CGAffineTransformRotate(self.faceView.transform, Animation.ShakeAngle)
+                                },
+                                completion: {
+                                    finished in
+                                    if finished {
+                                        
+                                    }
+                                    
+                                }
+                            )
+
+                        }
+                        
+                    }
+                )
+
+            }
+            
+        }
+        )
     }
     
     func changeBrows(recognizer: UIRotationGestureRecognizer) {
@@ -94,7 +144,7 @@ class FaceViewController: UIViewController {
         }
     }
     
-   let instance = getFaceMVCinstanceCount()
+  // let instance = getFaceMVCinstanceCount()
 
     
 }
