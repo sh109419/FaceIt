@@ -20,6 +20,18 @@ class EyeView: UIView
            return _eyesOpen
         }
         set {
+            if newValue != _eyesOpen {
+                // animate opening/closing the eyes
+                UIView.transition(
+                    with: self,
+                    duration: 0.4,
+                    options: [.transitionFlipFromTop],
+                    animations: {
+                        self._eyesOpen = newValue
+                    }
+                )
+            }
+            /*
             UIView.transition(
                 with: self,
                 duration: 0.2,
@@ -28,9 +40,25 @@ class EyeView: UIView
                     self._eyesOpen = newValue
                 },
                 completion: nil
-            )
+            )*/
         }
     }
+    
+    
+    /*private func pathForEye(eye: Eye) -> UIBezierPath {
+     let eyeRadius = skullRadius / Ratios.SkullRadiusToEyeRadius
+     let eyeCenter = getEyeCenter(eye)
+     if eyesOpen {
+     return pathForCircleCenterdAtPoint(eyeCenter, withRadius: eyeRadius)
+     } else {
+     let path = UIBezierPath()
+     path.move(to: CGPoint(x: eyeCenter.x-eyeRadius, y: eyeCenter.y))
+     path.addLine(to: CGPoint(x:eyeCenter.x+eyeRadius, y: eyeCenter.y))
+     path.lineWidth = lineWidth
+     return path
+     }
+     }*/
+
 
     override func draw(_ rect: CGRect)
     {
@@ -47,5 +75,6 @@ class EyeView: UIView
         path.lineWidth = lineWidth
         color.setStroke()
         path.stroke()
+        //print("draw eye")
     }
 }

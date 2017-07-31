@@ -132,12 +132,12 @@ class FaceViewController: UIViewController {
         .normal: 0.0,
     ]
     
-    fileprivate func updateUI() {
+    func updateUI() {
         if faceView != nil {
             switch expression.eyes {
             case .open: faceView.eyesOpen = true
             case .closed: faceView.eyesOpen = false
-            case .squinting: faceView.eyesOpen = false
+            case .squinting: break //faceView.eyesOpen = false
             }
             faceView.mouthCurvature = mouthCurvatures[expression.mouth] ?? 0.0
             faceView.eyeBrowTilt = eyeBrowTilts[expression.eyeBrows] ?? 0.0

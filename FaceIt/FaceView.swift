@@ -93,6 +93,7 @@ class FaceView: UIView {
         let size = skullRadius / Ratios.SkullRadiusToEyeRadius * 2
         eye.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: size, height: size))
         eye.center = center
+        eye.setNeedsDisplay()
     }
     
     /*override func layoutSubviews() {
@@ -102,19 +103,19 @@ class FaceView: UIView {
         positionEye(leftEye, center: getEyeCenter(.left))
         positionEye(rightEye, center: getEyeCenter(.right))
     }*/
-//    private func pathForEye(eye: Eye) -> UIBezierPath {
-//        let eyeRadius = skullRadius / Ratios.SkullRadiusToEyeRadius
-//        let eyeCenter = getEyeCenter(eye)
-//        if eyesOpen {
-//            return pathForCircleCenterdAtPoint(eyeCenter, withRadius: eyeRadius)
-//        } else {
-//            let path = UIBezierPath()
-//            path.moveToPoint(CGPoint(x: eyeCenter.x-eyeRadius, y: eyeCenter.y))
-//            path.addLineToPoint(CGPoint(x:eyeCenter.x+eyeRadius, y: eyeCenter.y))
-//            path.lineWidth = lineWidth
-//            return path
-//        }
-//    }
+    /*private func pathForEye(eye: Eye) -> UIBezierPath {
+        let eyeRadius = skullRadius / Ratios.SkullRadiusToEyeRadius
+        let eyeCenter = getEyeCenter(eye)
+        if eyesOpen {
+            return pathForCircleCenterdAtPoint(eyeCenter, withRadius: eyeRadius)
+        } else {
+            let path = UIBezierPath()
+            path.move(to: CGPoint(x: eyeCenter.x-eyeRadius, y: eyeCenter.y))
+            path.addLine(to: CGPoint(x:eyeCenter.x+eyeRadius, y: eyeCenter.y))
+            path.lineWidth = lineWidth
+            return path
+        }
+    }*/
     
     fileprivate func pathForMouth() -> UIBezierPath {
         let mouthWidth = skullRadius / Ratios.SkullRadiusToMouthWidth
@@ -163,15 +164,17 @@ class FaceView: UIView {
         // Drawing code
         color.set()
         pathForCircleCenterdAtPoint(skullCenter, withRadius: skullRadius).stroke()
-//        pathForEye(.Left).stroke()
-//        pathForEye(.Right).stroke()
+        //pathForEye(eye: .left).stroke()
+        //pathForEye(eye: .right).stroke()
         positionEye(leftEye, center: getEyeCenter(.left))
         positionEye(rightEye, center: getEyeCenter(.right))
         
         pathForMouth().stroke()
         pathForBrow(.left).stroke()
         pathForBrow(.right).stroke()
-        print("faceview drawrect")
+        //print("mouth width\(pathForMouth().lineWidth) eye width \(leftEye.lineWidth)")
+        //print("faceview drawrect")
+        
     }
     
 
