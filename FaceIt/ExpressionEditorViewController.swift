@@ -11,6 +11,11 @@ import UIKit
 class ExpressionEditorViewController: UITableViewController, UITextFieldDelegate {
     
     var name: String {
+        /*if nameTextField?.text == nil || nameTextField.text!.isEmpty {
+            return "unknown"
+        } else {
+            return nameTextField.text!
+        }*/
         return nameTextField?.text ?? "unknown"
     }
     
@@ -41,6 +46,34 @@ class ExpressionEditorViewController: UITableViewController, UITextFieldDelegate
             faceViewController = segue.destination as? BlinkingFaceViewController
             faceViewController?.expression = expression
         }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "Add Emotion", name.isEmpty {
+            handleUnnamedFace()
+            return false
+        } else {
+            return super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
+        }
+    }
+    
+    private func handleUnnamedFace() {
+        let alert = UIAlertController(title: "invalid Face", message: "A face must have a name.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            self.presentingViewController?.dismiss(animated: true) }))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            let text = alert.textFields?.first?.text
+            self.nameTextField?.text = alert.textFields?.first?.text
+            if !(text!.isEmpty) {
+                self.performSegue(withIdentifier: "Add Emotion", sender: nil)
+            }
+        }))
+        alert.addTextField {
+            (textField: UITextField!) -> Void in
+            textField.placeholder = "Name"
+        }
+        present(alert, animated: true)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
